@@ -1,0 +1,52 @@
+<main class="w-screen h-screen p-8">
+    <div class="size-full">
+        <mat-card class="size-full">
+            <mat-drawer-container class="size-full rounded-2xl">
+                <mat-drawer [opened]="isOpen" [mode]="smallScreen ? 'over' : 'side'" class="px-4 py-2">
+                    <h2 class="text-3xl font-normal px-3">Todo App</h2>
+                    <ul class="p-2">
+                        <li class="flex items-center justfy-between px-4 py-2 text-sm mb-3 rounded-md cursor-pointer"
+                            [ngClass]="isActive == 0 ? 'bg-blue-100' : 'bg-none'" (click)="redirectPage(0)" [routerLink]="'all-tasks'">
+                            <span class="w-full">All</span>
+                            <div class="flex items-center justify-center bg-blue-400 w-7 h-6 rounded-md text-white">{{(taskList$ | async)?.length}}
+                            </div>
+                        </li>
+                        <li class="flex items-center justfy-between px-4 py-2 text-sm mb-3 rounded-md cursor-pointer"
+                            [ngClass]="isActive == 1 ? 'bg-blue-100' : 'bg-none'" (click)="redirectPage(1)" [routerLink]="'incomplete-tasks'">
+                            <span class="w-full">Incomplete</span>
+                            <div class="flex items-center justify-center bg-orange-400 w-7 h-6 rounded-md text-white">{{incompleteTasks$ | async}}
+                            </div>
+                        </li>
+                        <li class="flex items-center justfy-between px-4 py-2 text-sm mb-3 rounded-md cursor-pointer"
+                            [ngClass]="isActive == 2 ? 'bg-blue-100' : 'bg-none'" (click)="redirectPage(2)" [routerLink]="'complete-tasks'">
+                            <span class="w-full">Completed</span>
+                            <div class="flex items-center justify-center bg-cyan-400 w-7 h-6 rounded-md text-white">{{completedTasks$ | async}}
+                            </div>
+                        </li>
+                    </ul>
+                </mat-drawer>
+                <mat-drawer-content>
+                    <mat-toolbar class="flex flex-col justify-start md:flex-row md:justify-between border-b bg-white shadow shadow-blue-100">
+                            <div class="flex items-center w-full">
+                                <button mat-icon-button class="p-2 w-12 h-12 mr-1" (click)="toggleSideBar()">
+                                    <mat-icon class="text-slate-500 text-2xl w-8 h-8" aria-hidden="false"
+                                        aria-label="menu-icon" fontIcon="menu"></mat-icon>
+                                </button>
+                                <mat-checkbox class="text-slate-500 text-wrap" color="primary" aria-label="markAllRead"
+                                    [disableRipple]="true" (change)="markAllCompleted($event.checked)">Mark all completed!</mat-checkbox>
+                            </div>
+                            <div class="rounded-md bg-blue-400 text-white px-2 py-1 text-sm" *ngIf="isTablet">{{incompleteTasks$ | async}} Tasks left</div>
+                    </mat-toolbar>
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-3 p-3 border-b border-gray-200">
+                        <input mat-Input type="text" id="addTask" name="addTask" placeholder="Add new task..."
+                            class="md:w-80 border rounded-md px-3 py-2" [(ngModel)]="newTask" />
+                        <button mat-button class="bg-blue-500 text-white text-xs md:text-sm rounded-md px-6 py-2" [disabled]="!newTask"
+                            (click)="addEditTask()">{{isEditTask ? "Edit Task" : "Add Task"}}</button>
+                    </div>
+                    <router-outlet></router-outlet>
+                </mat-drawer-content>
+            </mat-drawer-container>
+        </mat-card>
+    </div>
+
+</main>
