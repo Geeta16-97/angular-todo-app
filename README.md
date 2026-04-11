@@ -56,13 +56,21 @@ http://localhost:4200
 
 ## Live Demo
 
-![App Screenshot](src/assets/screenshot.png)
+https://geeta16-97.github.io/angular-todo-app/
 
 ---
 
 ## Screenshot
 
-https://geeta16-97.github.io/angular-todo-app/
+![App Screenshot](src/assets/screenshot.png)
+
+---
+
+## Future Improvements
+
+* Implement dark mode
+* set task priority
+* Add drag-and-drop functionality
 
 ---
 
