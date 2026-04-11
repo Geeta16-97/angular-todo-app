@@ -54,9 +54,15 @@ http://localhost:4200
 
 ---
 
-## Screenshot
+## Live Demo
 
 ![App Screenshot](src/assets/screenshot.png)
+
+---
+
+## Screenshot
+
+https://geeta16-97.github.io/angular-todo-app/
 
 ---
 
