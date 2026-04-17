@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Task } from './task.types';
 import { DatePipe } from '@angular/common';
 import { TaskService } from '../task.service';
@@ -14,7 +14,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
   smallScreen: boolean = false;
   isTablet: boolean = false;
   isOpen: boolean = true;
-  isActive: number = 0;
   newTask: string = "";
   setTask!: Task;
   taskList$!: Observable<Task[]>;
@@ -80,10 +79,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   editTask(index: number): void {
     this.isEditTask = true;
-  }
-
-  redirectPage(activeTab: number): void {
-    this.isActive = activeTab;
   }
 
   ngOnDestroy(): void {
